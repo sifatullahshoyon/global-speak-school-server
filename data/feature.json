@@ -1,0 +1,27 @@
+[
+    {
+      "id": 1,
+      "title": "Best Teacher",
+      "details": "Have you ever wondered who the world's best teacher is? Well, we are proud to say that we have them! And the best part? They are recognized in different languages all around the globe. It's truly remarkable!.",
+      "image": "https://i.ibb.co/T0Hx8w8/teacher.png"
+    },
+    {
+      "id": 2,
+      "title": "Certificate to World",
+      "details": "we provide course certificates. when a student complete the full course & pass out to the exam then we will provide the certificates.",
+      "image": "https://i.ibb.co/XCsxTwp/certificate.png"
+    },
+    {
+      "id": 3,
+      "title": "Special Reward",
+      "details": "we give different kinds of rewards to students to boost their morale. If a student gets 90% marks we take half of his course fee. Besides, we give prizes to the first 3 people who have good marks.",
+      "image": "https://i.ibb.co/F8ft77y/badge.png"
+    },
+    {
+      "id": 4,
+      "title": "Student Service",
+      "details": "we have detected the student care team. this team's main work solve every student's problem & monitor every student's work.",
+      "image": "https://i.ibb.co/NpX5w06/004-student.png"
+    }
+  ]
+  

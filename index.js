@@ -35,7 +35,16 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
 
+    const featuresCollection = client.db('speakeDb').collection('features');
 
+
+    // FEATURE API COLLECTION:-
+    // Get Feature
+    app.get('/features' , async(req,res) => {
+        const result = await featuresCollection.find().toArray();
+        console.log(result);
+        res.send(result);
+    });
 
 
     // Send a ping to confirm a successful connection
