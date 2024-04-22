@@ -36,6 +36,7 @@ async function run() {
     await client.connect();
 
     const featuresCollection = client.db('speakeDb').collection('features');
+    const classesCollection = client.db('speakeDb').collection('classes');
 
 
     // FEATURE API COLLECTION:-
@@ -45,6 +46,31 @@ async function run() {
         console.log(result);
         res.send(result);
     });
+
+   // Get all classes
+app.get('/classes', async (req, res) => {
+  try {
+    const result = await classesCollection.find().toArray();
+    res.send(result);
+  } catch (err) {
+    console.error('Error fetching classes', err);
+    res.status(500).json({ error: 'Error fetching classes' });
+  }
+});
+
+// Add a new class
+app.post('/classes', async (req, res) => {
+  try {
+    const { name, students, imageUrl } = req.body;
+    const result = await classesCollection.insertOne({ name, students, imageUrl });
+    res.json(result.ops[0]);
+  } catch (err) {
+    console.error('Error adding class', err);
+    res.status(500).json({ error: 'Error adding class' });
+  }
+});
+
+
 
 
     // Send a ping to confirm a successful connection

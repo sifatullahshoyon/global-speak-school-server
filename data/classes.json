@@ -1,0 +1,113 @@
+[
+  {
+    "title": "English Conversation",
+    "description": "Improve spoken English skills through interactive conversations and activities.",
+    "classImage": "https://i.ibb.co/HYCsr0x/premium-photo-1683140719297-5e8f698567db-q-80-w-2070-auto-format-fit-crop-ixlib-rb-4-0.jpg",
+    "instructor": {
+      "name": "John Doe",
+      "image": "https://i.ibb.co/8DjTCfK/photo-1560250097-0b93528c311a-w-500-auto-format-fit-crop-q-60-ixlib-rb-4-0.jpg",
+      "gender": "male"
+    },
+    "duration": "1 hour per session",
+    "students": 30,
+    "schedule": ["Monday", "Wednesday", "Friday at 10:00 AM"],
+    "features": [
+      "Interactive learning environment",
+      "Personalized feedback",
+      "Structured curriculum",
+      "Flexible schedule options",
+      "Positive learning atmosphere",
+      "Practical application activities"
+    ]
+  },
+  {
+    "title": "Spanish for Beginners",
+    "description": "Learn basic Spanish vocabulary and grammar for beginners.",
+    "classImage": "https://i.ibb.co/T0zNT1z/photo-1524178232363-1fb2b075b655-w-500-auto-format-fit-crop-q-60-ixlib-rb-4-0.jpg",
+    "instructor": {
+      "name": "Maria Garcia",
+      "image": "https://i.ibb.co/3hmx7Yf/photo-1610631066894-62452ccb927c-w-500-auto-format-fit-crop-q-60-ixlib-rb-4-0.jpg",
+      "gender": "female"
+    },
+    "duration": "45 minutes per session",
+    "students": 20,
+    "schedule": ["Tuesday", "Thursday at 6:00 PM"],
+    "features": [
+      "Introduction to basic Spanish vocabulary",
+      "Grammar essentials for beginners",
+      "Small class size for personalized attention"
+    ]
+  },
+  {
+    "title": "French Language Proficiency",
+    "description": "Enhance your French language skills and proficiency levels.",
+    "classImage": "https://i.ibb.co/jGkRTFP/photo-1509062522246-3755977927d7-w-500-auto-format-fit-crop-q-60-ixlib-rb-4-0.jpg",
+    "instructor": {
+      "name": "Jean Baptiste",
+      "image": "https://i.ibb.co/vL0BxNM/photo-1507003211169-0a1dd7228f2d-w-500-auto-format-fit-crop-q-60-ixlib-rb-4-0.jpg",
+      "gender": "male"
+    },
+    "duration": "1.5 hours per session",
+    "students": 25,
+    "schedule": ["Monday", "Wednesday", "Friday at 6:00 PM"],
+    "features": [
+      "Comprehensive French language instruction",
+      "Interactive language practice",
+      "Cultural insights and immersion"
+    ]
+  },
+  {
+    "title": "Mandarin Chinese Conversation",
+    "description": "Develop conversational skills in Mandarin Chinese.",
+    "classImage": "https://i.ibb.co/f0G3Pz4/photo-1523240795612-9a054b0db644-w-500-auto-format-fit-crop-q-60-ixlib-rb-4-0.jpg",
+    "instructor": {
+      "name": "Li Wei",
+      "image": "https://i.ibb.co/7p9Cw7J/photo-1573496359142-b8d87734a5a2-w-500-auto-format-fit-crop-q-60-ixlib-rb-4-0.jpg",
+      "gender": "female"
+    },
+    "duration": "1 hour per session",
+    "students": 35,
+    "schedule": ["Tuesday", "Thursday at 4:00 PM"],
+    "features": [
+      "Interactive Mandarin conversation practice",
+      "Vocabulary expansion",
+      "Cultural nuances and customs"
+    ]
+  },
+  {
+    "title": "German Language Intensive",
+    "description": "Intensive course for learning German language basics.",
+    "classImage": "https://i.ibb.co/mTz5r6r/premium-photo-1661767552224-ef72bb6b671f-w-500-auto-format-fit-crop-q-60-ixlib-rb-4-0.jpg",
+    "instructor": {
+      "name": "Hans Schmidt",
+      "image": "https://i.ibb.co/QPTXkw5/photo-1500648767791-00dcc994a43e-w-500-auto-format-fit-crop-q-60-ixlib-rb-4-0.jpg",
+      "gender": "male"
+    },
+    "duration": "2 hours per session",
+    "students": 15,
+    "schedule": ["Saturday at 10:00 AM"],
+    "features": [
+      "Focused instruction on German language basics",
+      "Grammar and syntax practice",
+      "Small group setting for personalized feedback"
+    ]
+  },
+  {
+    "title": "Japanese Language Proficiency",
+    "description": "Master Japanese language proficiency levels with comprehensive instruction.",
+    "classImage": "https://i.ibb.co/GQ6dv4Z/premium-photo-1682787494977-d013bb5a8773-w-500-auto-format-fit-crop-q-60-ixlib-rb-4-0.jpg",
+    "instructor": {
+      "name": "Yuki Tanaka",
+      "image": "https://i.ibb.co/S3jR94B/photo-1580489944761-15a19d654956-w-500-auto-format-fit-crop-q-60-ixlib-rb-4-0.jpg",
+      "gender": "female"
+    },
+    "duration": "2.5 hours per session",
+    "students": 10,
+    "schedule": ["Sunday at 2:00 PM"],
+    "features": [
+      "Advanced Japanese language instruction",
+      "Conversation fluency practice",
+      "Cultural immersion experiences"
+    ]
+  }
+]
