@@ -1,13 +1,12 @@
 [
   {
-    "title": "English Conversation",
-    "description": "Enhance your spoken English skills through engaging conversations and activities. Join our experienced instructor, John Doe, in a dynamic learning environment designed to boost fluency and confidence. Interactive sessions, personalized feedback, and practical exercises make learning enjoyable and effective.",
+    "courseTitle": "English Conversation",
     "classImage": "https://i.ibb.co/HYCsr0x/premium-photo-1683140719297-5e8f698567db-q-80-w-2070-auto-format-fit-crop-ixlib-rb-4-0.jpg",
     "instructor": {
       "name": "John Doe",
       "image": "https://i.ibb.co/8DjTCfK/photo-1560250097-0b93528c311a-w-500-auto-format-fit-crop-q-60-ixlib-rb-4-0.jpg",
       "gender": "male",
-      "email" : "johndoe@gmail.com"
+      "email": "johndoe@gmail.com"
     },
     "duration": "1 hour per session",
     "students": 30,
@@ -22,13 +21,13 @@
     ]
   },
   {
-    "title": "Spanish for Beginners",
-    "description": "Start your journey into the world of Spanish with our beginner-friendly course. Dive into basic vocabulary and grammar essentials under the guidance of Maria Garcia, our expert instructor. Small class sizes ensure personalized attention, making learning Spanish enjoyable and rewarding..",
+    "courseTitle": "Spanish for Beginners",
     "classImage": "https://i.ibb.co/T0zNT1z/photo-1524178232363-1fb2b075b655-w-500-auto-format-fit-crop-q-60-ixlib-rb-4-0.jpg",
     "instructor": {
       "name": "Maria Garcia",
       "image": "https://i.ibb.co/3hmx7Yf/photo-1610631066894-62452ccb927c-w-500-auto-format-fit-crop-q-60-ixlib-rb-4-0.jpg",
-      "gender": "female"
+      "gender": "female",
+      "email": "maria@garcia.com"
     },
     "duration": "45 minutes per session",
     "students": 20,
@@ -40,13 +39,13 @@
     ]
   },
   {
-    "title": "French Language Proficiency",
-    "description": "Enhance your French language skills and proficiency levels with our comprehensive course. Led by experienced instructor Jean Baptiste, you'll dive into interactive language practice and cultural insights. Join our friendly classes for an immersive learning experience.",
+    "courseTitle": "French Language Proficiency",
     "classImage": "https://i.ibb.co/jGkRTFP/photo-1509062522246-3755977927d7-w-500-auto-format-fit-crop-q-60-ixlib-rb-4-0.jpg",
     "instructor": {
       "name": "Jean Baptiste",
       "image": "https://i.ibb.co/vL0BxNM/photo-1507003211169-0a1dd7228f2d-w-500-auto-format-fit-crop-q-60-ixlib-rb-4-0.jpg",
-      "gender": "male"
+      "gender": "male",
+      "email": "jean@baptiste@gmail.com"
     },
     "duration": "1.5 hours per session",
     "students": 25,
@@ -58,13 +57,13 @@
     ]
   },
   {
-    "title": "Mandarin Chinese Conversation",
-    "description": "Develop conversational skills in Mandarin Chinese with our engaging course. Led by instructor Li Wei, you'll engage in interactive conversation practice and vocabulary expansion. Join our diverse classes for an enriching language learning journey.",
+    "courseTitle": "Mandarin Chinese Conversation",
     "classImage": "https://i.ibb.co/f0G3Pz4/photo-1523240795612-9a054b0db644-w-500-auto-format-fit-crop-q-60-ixlib-rb-4-0.jpg",
     "instructor": {
       "name": "Li Wei",
       "image": "https://i.ibb.co/7p9Cw7J/photo-1573496359142-b8d87734a5a2-w-500-auto-format-fit-crop-q-60-ixlib-rb-4-0.jpg",
-      "gender": "female"
+      "gender": "female",
+      "email": "li@wei.com"
     },
     "duration": "1 hour per session",
     "students": 35,
@@ -76,13 +75,13 @@
     ]
   },
   {
-    "title": "German Language Intensive",
-    "description": "Embark on an intensive journey into the world of German language basics with our specialized course. Led by instructor Hans Schmidt, you'll receive focused instruction and personalized feedback. Join our small group classes for accelerated learning.",
+    "courseTitle": "German Language Intensive",
     "classImage": "https://i.ibb.co/mTz5r6r/premium-photo-1661767552224-ef72bb6b671f-w-500-auto-format-fit-crop-q-60-ixlib-rb-4-0.jpg",
     "instructor": {
       "name": "Hans Schmidt",
       "image": "https://i.ibb.co/QPTXkw5/photo-1500648767791-00dcc994a43e-w-500-auto-format-fit-crop-q-60-ixlib-rb-4-0.jpg",
-      "gender": "male"
+      "gender": "male",
+      "email": "hans@schmidt.com"
     },
     "duration": "2 hours per session",
     "students": 15,
@@ -94,13 +93,13 @@
     ]
   },
   {
-    "title": "Japanese Language Proficiency",
-    "description": "Master Japanese language proficiency levels with our comprehensive course. Led by experienced instructor Yuki Tanaka, you'll engage in advanced language instruction and cultural immersion experiences. Join our intimate classes for a transformative learning journey.",
+    "courseTitle": "Japanese Language Proficiency",
     "classImage": "https://i.ibb.co/GQ6dv4Z/premium-photo-1682787494977-d013bb5a8773-w-500-auto-format-fit-crop-q-60-ixlib-rb-4-0.jpg",
     "instructor": {
       "name": "Yuki Tanaka",
       "image": "https://i.ibb.co/S3jR94B/photo-1580489944761-15a19d654956-w-500-auto-format-fit-crop-q-60-ixlib-rb-4-0.jpg",
-      "gender": "female"
+      "gender": "female",
+      "email": "yukitanaka@gmail.com"
     },
     "duration": "2.5 hours per session",
     "students": 10,
