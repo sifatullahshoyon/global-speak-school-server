@@ -11,6 +11,8 @@
     },
     "duration": "1 hour per session",
     "students": 30,
+    "availableSeats" : 6,
+    "price" : 20,
     "schedule": ["Monday", "Wednesday", "Friday at 10:00 AM"],
     "features": [
       "Interactive learning environment",
@@ -32,6 +34,8 @@
     },
     "duration": "45 minutes per session",
     "students": 20,
+    "availableSeats" : 14,
+    "price" : 30,
     "schedule": ["Tuesday", "Thursday at 6:00 PM"],
     "features": [
       "Introduction to basic Spanish vocabulary",
@@ -50,6 +54,8 @@
     },
     "duration": "1.5 hours per session",
     "students": 25,
+    "availableSeats" : 0,
+    "price" : 22,
     "schedule": ["Monday", "Wednesday", "Friday at 6:00 PM"],
     "features": [
       "Comprehensive French language instruction",
@@ -68,6 +74,8 @@
     },
     "duration": "1 hour per session",
     "students": 35,
+    "availableSeats" : 15,
+    "price" : 60,
     "schedule": ["Tuesday", "Thursday at 4:00 PM"],
     "features": [
       "Interactive Mandarin conversation practice",
@@ -86,6 +94,8 @@
     },
     "duration": "2 hours per session",
     "students": 15,
+    "availableSeats" : 8,
+    "price" : 23,
     "schedule": ["Saturday at 10:00 AM"],
     "features": [
       "Focused instruction on German language basics",
@@ -104,6 +114,8 @@
     },
     "duration": "2.5 hours per session",
     "students": 10,
+    "availableSeats" : 0,
+    "price" : 55,
     "schedule": ["Sunday at 2:00 PM"],
     "features": [
       "Advanced Japanese language instruction",

@@ -32,15 +32,34 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
 
+    const usersCollection = client.db("speakeDb").collection("users");
     const featuresCollection = client.db("speakeDb").collection("features");
     const classesCollection = client.db("speakeDb").collection("classes");
     const instructorCollection = client.db("speakeDb").collection("instructor");
+
+    // User Related Apis:
+    app.post("/users", async (req, res) => {
+      try {
+        const user = req.body;
+        const query = {email : user.email};
+        const existingUser = await usersCollection.findOne(query);
+        console.log('existing User' , existingUser);
+        if(existingUser){
+          return res.status(510).send({Message : 'User Already Exists'});
+        };
+        const result = await usersCollection.insertOne(user);
+        console.log(result);
+        res.send(result);
+      } catch (err) {
+        console.error("Error adding users", err);
+        res.status(500).send({ error: "Error adding users" });
+      }
+    });
 
     // FEATURE API COLLECTION:-
     // Get Feature
     app.get("/features", async (req, res) => {
       const result = await featuresCollection.find().toArray();
-      console.log(result);
       res.send(result);
     });
 
@@ -52,7 +71,7 @@ async function run() {
         res.send(result);
       } catch (err) {
         console.error("Error fetching classes", err);
-        res.status(500).json({ error: "Error fetching classes" });
+        res.status(500).send({ error: "Error fetching classes" });
       }
     });
 
@@ -65,10 +84,10 @@ async function run() {
           students,
           imageUrl,
         });
-        res.json(result.ops[0]);
+        res.send(result.ops[0]);
       } catch (err) {
         console.error("Error adding class", err);
-        res.status(500).json({ error: "Error adding class" });
+        res.status(500).send({ error: "Error adding class" });
       }
     });
 
@@ -80,7 +99,7 @@ async function run() {
         res.send(result);
       } catch (err) {
         console.error("Error fetching instructor", err);
-        res.status(500).json({ error: "Error fetching instructor" });
+        res.status(500).send({ error: "Error fetching instructor" });
       }
     });
 
