@@ -38,6 +38,26 @@ async function run() {
     const instructorCollection = client.db("speakeDb").collection("instructor");
 
     // User Related Apis:
+
+    app.get('/users', async(req,res)=>{
+      const result = await usersCollection.find().toArray();
+      res.send(result);
+    });
+
+    // app.get("/users", async (req, res) => {
+    //   try {
+    //     const email = req.query.email;
+    //       console.log(email);
+    //       const query = {email : email};
+    //       const result = await usersCollection.find(query).toArray();
+    //       res.send(result);
+        
+    //   } catch (err) {
+    //     console.error("Error fetching users", err);
+    //     res.status(500).send({ error: "Error fetching users" });
+    //   }
+    // });
+
     app.post("/users", async (req, res) => {
       try {
         const user = req.body;
