@@ -3,6 +3,7 @@ require("dotenv").config();
 const app = express();
 const morgan = require("morgan");
 const cors = require("cors");
+const jwt = require('jsonwebtoken');
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const port = process.env.port || 5000;
 
@@ -10,6 +11,24 @@ const port = process.env.port || 5000;
 app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
+
+const verifyJWT = (req, res, next) => {
+  const authorization = req.headers.authorization;
+  if(!authorization){
+    return res.status(401).send({error : true , message : 'Unauthorize Access'});
+  };
+
+  // bearer token
+  const token = authorization.split(' ')[1];
+
+  jwt.verify(token , process.env.ACCESS_TOKEN_SECRET, (err , decoded) => {
+    if(err){
+      return res.status(401).send({error : true , message : 'Unauthorize Access'});
+    };
+    req.decoded = decoded;
+    next();
+  });
+};
 
 app.get("/", (req, res) => {
   res.send("Global Speak School Server Is Running.");
@@ -37,17 +56,33 @@ async function run() {
     const classesCollection = client.db("speakeDb").collection("classes");
     const instructorCollection = client.db("speakeDb").collection("instructor");
 
-    // User Related Apis:
+    // JWT:-
+    app.post('/jwt' , (req,res) => {
+      const user = req.body;
+      const token = jwt.sign(user , process.env.ACCESS_TOKEN_SECRET , { expiresIn: '1h' });
+      res.send({token});
+    });
 
+    // User Related Apis:
     app.get('/users', async(req,res)=>{
       const result = await usersCollection.find().toArray();
       res.send(result);
     });
 
-    // app.get("/users", async (req, res) => {
+    // app.get("/users", verifyJWT ,  async (req, res) => {
     //   try {
     //     const email = req.query.email;
-    //       console.log(email);
+
+    //     if(!email){
+    //       return res.send([]);
+    //     };
+
+
+    //     const decodedEmail = req.decoded.email;
+    //     if(email !== decodedEmail){
+    //       return res.status(403).send({error : true , message : 'Forbidden Access'});
+    //     };
+
     //       const query = {email : email};
     //       const result = await usersCollection.find(query).toArray();
     //       res.send(result);
