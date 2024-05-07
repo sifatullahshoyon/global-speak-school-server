@@ -3,7 +3,7 @@ require("dotenv").config();
 const app = express();
 const morgan = require("morgan");
 const cors = require("cors");
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const port = process.env.port || 5000;
 
 // middleware
@@ -73,6 +73,24 @@ async function run() {
       } catch (err) {
         console.error("Error adding users", err);
         res.status(500).send({ error: "Error adding users" });
+      }
+    });
+
+    app.patch("/users/admin/:id", async (req, res) => {
+      try {
+        const id = req.params.id;
+        const filter = { _id : new ObjectId(id) };
+        const updateDoc = {
+          $set: {
+            role: 'admin'
+          },
+        };
+
+        const result = await usersCollection.updateOne(filter , updateDoc);
+        res.send(result);
+      } catch (err) {
+        console.error("Error update user info", err);
+        res.status(500).send({ error: "Error update user info" });
       }
     });
 
