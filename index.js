@@ -138,6 +138,18 @@ async function run() {
       }
     });
 
+    app.delete("/users/:id", verifyJWT, verifyAdmin, async (req, res) => {
+      try {
+        const id = req.params.id;
+        const query = { _id: new ObjectId(id) };
+        const result = await usersCollection.deleteOne(query);
+        res.send(result);
+      } catch (err) {
+        console.error("Error delete user info", err);
+        res.status(500).send({ error: "Error delete user info" });
+      }
+    });
+
     // FEATURE API COLLECTION:-
     // Get Feature
     app.get("/features", async (req, res) => {
