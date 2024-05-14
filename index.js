@@ -3,7 +3,7 @@ require("dotenv").config();
 const app = express();
 const morgan = require("morgan");
 const cors = require("cors");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const port = process.env.port || 5000;
 
@@ -14,17 +14,19 @@ app.use(morgan("dev"));
 
 const verifyJWT = (req, res, next) => {
   const authorization = req.headers.authorization;
-  if(!authorization){
-    return res.status(401).send({error : true , message : 'Unauthorize Access'});
-  };
+  if (!authorization) {
+    return res.status(401).send({ error: true, message: "Unauthorize Access" });
+  }
 
   // bearer token
-  const token = authorization.split(' ')[1];
+  const token = authorization.split(" ")[1];
 
-  jwt.verify(token , process.env.ACCESS_TOKEN_SECRET, (err , decoded) => {
-    if(err){
-      return res.status(401).send({error : true , message : 'Unauthorize Access'});
-    };
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+    if (err) {
+      return res
+        .status(401)
+        .send({ error: true, message: "Unauthorize Access" });
+    }
     req.decoded = decoded;
     next();
   });
@@ -57,51 +59,58 @@ async function run() {
     const instructorCollection = client.db("speakeDb").collection("instructor");
 
     // JWT:-
-    app.post('/jwt' , (req,res) => {
+    app.post("/jwt", (req, res) => {
       const user = req.body;
-      const token = jwt.sign(user , process.env.ACCESS_TOKEN_SECRET , { expiresIn: '1h' });
-      res.send({token});
+      const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
+        expiresIn: "1h",
+      });
+      res.send({ token });
     });
 
+    // warning: use verifyJWT before using verifyAdmin:
+    const verifyAdmin = async (req, res, next) => {
+      const email = req.decoded.email;
+      const query = { email: email };
+      const user = await usersCollection.findOne(query);
+      if (user?.role !== "admin") {
+        return res
+          .status(403)
+          .send({ error: true, message: "Forbidden Access" });
+      }
+      next();
+    };
+
     // User Related Apis:
-    app.get('/users', async(req,res)=>{
+    app.get("/users", verifyJWT, verifyAdmin, async (req, res) => {
       const result = await usersCollection.find().toArray();
       res.send(result);
     });
 
-    // app.get("/users", verifyJWT ,  async (req, res) => {
-    //   try {
-    //     const email = req.query.email;
+    app.get("/users/admin/:email", verifyJWT, async (req, res) => {
+      const email = req.params.email;
 
-    //     if(!email){
-    //       return res.send([]);
-    //     };
+      if (email !== req.decoded.email) {
+        return res.status(403).send({ message: "forbidden access" });
+      }
 
-
-    //     const decodedEmail = req.decoded.email;
-    //     if(email !== decodedEmail){
-    //       return res.status(403).send({error : true , message : 'Forbidden Access'});
-    //     };
-
-    //       const query = {email : email};
-    //       const result = await usersCollection.find(query).toArray();
-    //       res.send(result);
-        
-    //   } catch (err) {
-    //     console.error("Error fetching users", err);
-    //     res.status(500).send({ error: "Error fetching users" });
-    //   }
-    // });
+      const query = { email: email };
+      const user = await usersCollection.findOne(query);
+      let admin = false;
+      if (user) {
+        admin = user?.role === "admin";
+      }
+      res.send({ admin });
+    });
 
     app.post("/users", async (req, res) => {
       try {
         const user = req.body;
-        const query = {email : user.email};
+        const query = { email: user.email };
         const existingUser = await usersCollection.findOne(query);
-        console.log('existing User' , existingUser);
-        if(existingUser){
-          return res.status(510).send({Message : 'User Already Exists'});
-        };
+        console.log("existing User", existingUser);
+        if (existingUser) {
+          return res.status(510).send({ Message: "User Already Exists" });
+        }
         const result = await usersCollection.insertOne(user);
         console.log(result);
         res.send(result);
@@ -114,14 +123,14 @@ async function run() {
     app.patch("/users/admin/:id", async (req, res) => {
       try {
         const id = req.params.id;
-        const filter = { _id : new ObjectId(id) };
+        const filter = { _id: new ObjectId(id) };
         const updateDoc = {
           $set: {
-            role: 'admin'
+            role: "admin",
           },
         };
 
-        const result = await usersCollection.updateOne(filter , updateDoc);
+        const result = await usersCollection.updateOne(filter, updateDoc);
         res.send(result);
       } catch (err) {
         console.error("Error update user info", err);
