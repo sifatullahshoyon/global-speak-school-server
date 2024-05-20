@@ -5,10 +5,18 @@ const morgan = require("morgan");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
+const stripe = require("stripe")(process.env.PAYMENT_SECRET_KEY);
 const port = process.env.port || 5000;
 
 // middleware
-app.use(cors());
+const corsConfig = {
+  origin: "*",
+  credentials: true,
+  methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
+};
+app.options("", cors(corsConfig));
+app.use(cors(corsConfig));
+
 app.use(express.json());
 app.use(morgan("dev"));
 
@@ -51,7 +59,7 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+    // await client.connect();
 
     const usersCollection = client.db("speakeDb").collection("users");
     const featuresCollection = client.db("speakeDb").collection("features");
@@ -195,6 +203,23 @@ async function run() {
         console.error("Error fetching instructor", err);
         res.status(500).send({ error: "Error fetching instructor" });
       }
+    });
+
+    // Create Payment Intent:-
+    app.post("/create-payment-intent", verifyJWT , async (req, res) => {
+      const { price } = req.body;
+      const amount = parseInt(price * 100);
+    
+      // Create a PaymentIntent with the order amount and currency
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: amount,
+        currency: "usd",
+        payment_method_types: ['card'],
+      });
+    
+      res.send({
+        clientSecret: paymentIntent.client_secret,
+      });
     });
 
     // Send a ping to confirm a successful connection
