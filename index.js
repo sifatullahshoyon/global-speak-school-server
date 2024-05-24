@@ -88,12 +88,26 @@ async function run() {
       next();
     };
 
+    // Instructor
+    const verifyInstructor = async (req, res, next) => {
+      const email = req.decoded.email;
+      const query = { email: email };
+      const user = await usersCollection.findOne(query);
+      if (user?.role !== "instructor") {
+        return res
+          .status(403)
+          .send({ error: true, message: "Forbidden Access" });
+      }
+      next();
+    };
+
     // User Related Apis:
     app.get("/users", verifyJWT, verifyAdmin, async (req, res) => {
       const result = await usersCollection.find().toArray();
       res.send(result);
     });
 
+    // admin
     app.get("/users/admin/:email", verifyJWT, async (req, res) => {
       const email = req.params.email;
 
@@ -110,17 +124,32 @@ async function run() {
       res.send({ admin });
     });
 
+    // Instructor
+    app.get("/users/instructor/:email", verifyJWT, async (req, res) => {
+      const email = req.params.email;
+
+      if (email !== req.decoded.email) {
+        return res.status(403).send({ message: "forbidden access" });
+      }
+
+      const query = { email: email };
+      const user = await usersCollection.findOne(query);
+      let instructor = false;
+      if (user) {
+        instructor = user?.role === "instructor";
+      }
+      res.send({ instructor });
+    });
+
     app.post("/users", async (req, res) => {
       try {
         const user = req.body;
         const query = { email: user.email };
         const existingUser = await usersCollection.findOne(query);
-        console.log("existing User", existingUser);
         if (existingUser) {
           return res.status(510).send({ Message: "User Already Exists" });
         }
         const result = await usersCollection.insertOne(user);
-        console.log(result);
         res.send(result);
       } catch (err) {
         console.error("Error adding users", err);
@@ -128,6 +157,7 @@ async function run() {
       }
     });
 
+    // admin
     app.patch("/users/admin/:id", async (req, res) => {
       try {
         const id = req.params.id;
@@ -135,6 +165,25 @@ async function run() {
         const updateDoc = {
           $set: {
             role: "admin",
+          },
+        };
+
+        const result = await usersCollection.updateOne(filter, updateDoc);
+        res.send(result);
+      } catch (err) {
+        console.error("Error update user info", err);
+        res.status(500).send({ error: "Error update user info" });
+      }
+    });
+
+    // Instructor
+    app.patch("/users/instructor/:id", async (req, res) => {
+      try {
+        const id = req.params.id;
+        const filter = { _id: new ObjectId(id) };
+        const updateDoc = {
+          $set: {
+            role: "instructor",
           },
         };
 
@@ -177,6 +226,18 @@ async function run() {
       }
     });
 
+    app.get("/classes/:id", async (req, res) => {
+      try {
+        const id = req.params.id;
+        const query = { _id: new ObjectId(id) };
+        const result = await classesCollection.findOne(query);
+        res.send(result);
+      } catch (err) {
+        console.error("Error fetching classes", err);
+        res.status(500).send({ error: "Error fetching classes" });
+      }
+    });
+
     // Add a new class
     app.post("/classes", async (req, res) => {
       try {
@@ -206,17 +267,17 @@ async function run() {
     });
 
     // Create Payment Intent:-
-    app.post("/create-payment-intent", verifyJWT , async (req, res) => {
+    app.post("/create-payment-intent", verifyJWT, async (req, res) => {
       const { price } = req.body;
       const amount = parseInt(price * 100);
-    
+
       // Create a PaymentIntent with the order amount and currency
       const paymentIntent = await stripe.paymentIntents.create({
         amount: amount,
         currency: "usd",
-        payment_method_types: ['card'],
+        payment_method_types: ["card"],
       });
-    
+
       res.send({
         clientSecret: paymentIntent.client_secret,
       });
